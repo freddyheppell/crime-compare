@@ -1,13 +1,13 @@
 <template>
-  <div id="app" class="h-full font-sans">
+  <div id="app" class="h-full bg-police-blue font-sans">
     <div class="w-screen">
       <div v-if="!displayStats" class="w-1/2 mx-auto">
         <h1 class="text-6xl text-white font-bold text-center">CrimeCompare</h1>
         <GetPostcodes :externalLoading="loading" v-on:postcodes-set="setPostcodes"/>
       </div>
       <div v-else class="text-white statistics-container">
-        <PostcodeBar :area1="areas.area1" :area2="areas.area2"/>
-        <Statistic v-for="(name, key) in crimeTypes" v-bind:key="key" :name="name" :area1="areas.area1.crime_stats[key]" :area2="areas.area2.crime_stats[key]"/>
+        <PostcodeBar :area1="areas.area1" :area2="areas.area2" v-on:clear-postcodes="clearPostcodes"/>
+        <Statistic v-for="(name, key) in crimeTypes" v-bind:key="key" :crime_key="key" :name="name" :area1="areas.area1.crime_stats[key]" :area2="areas.area2.crime_stats[key]"/>
       </div>
     </div>
   </div>
@@ -44,6 +44,11 @@ export default {
   },
 
   methods: {
+    clearPostcodes: function() {
+      this.areas = null;
+      this.displayStats = false;
+    },
+
     setPostcodes: function(data) {
       this.areas = data;
       this.fetchCrimeData();

@@ -62,7 +62,7 @@
 .crime-name {
     position:absolute;
     font-family: Arial, Helvetica; 
-    font-size: 100px; 
+    font-size: 95px; 
     mix-blend-mode: difference;
     color: white;
     z-index: 3;
