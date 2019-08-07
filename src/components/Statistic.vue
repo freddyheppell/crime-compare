@@ -1,9 +1,11 @@
 <template>
-    <div>
-        <div class="flex">
-            <div :style="'width:' + area1Percent + '%'" class="bg-white py-40">
-                <div class="text-5xl mx-2 text-black">{{ name }}</div>
-            </div>
+    <div v-if="show" style="height: 200px;">
+        <div>
+            <div class="whitebg w-full"></div>
+            <div class="blackbg" :style="'width:' + area1Percent + '%'"></div>
+            <div class="makered w-full" ></div>
+
+            <span class="crime-name font-bold">{{ name }}</span>
         </div>
     </div>
 </template>
@@ -16,6 +18,10 @@ export default {
     computed: {
         sum: function() {
             return this.area1 + this.area2;
+        },
+
+        show: function() {
+            return this.area1 != null && this.area2 != null;
         },
 
         area1Percent: function() {

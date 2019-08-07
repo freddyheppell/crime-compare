@@ -35,4 +35,46 @@
     @apply bg-gray-500 cursor-not-allowed;
 }
 
+.top-50pc {
+    top: 50%;
+}
+
+
+
+/* A white bottom layer */
+.whitebg { 
+    background: white;
+    position: absolute;
+    height: 200px;
+    z-index:1
+}
+
+/* A black layer on top of the white bottom layer */
+.blackbg { 
+    background: black; 
+    width:100px;
+    height: 200px;
+    position: absolute;
+    z-index:2
+}
+
+/* Some white text on top with blend-mode set to 'difference' */
+.crime-name {
+    position:absolute; 
+    font-family: Arial, Helvetica; 
+    font-size: 100px; 
+    mix-blend-mode: difference;
+    color: white;
+    z-index: 3
+}
+
+/* A red DIV over the scene with the blend-mode set to 'screen' */
+.makered { 
+    background-color: #1b4080;
+    mix-blend-mode: screen;
+    height: 200px;
+    position: absolute;
+    z-index:4
+}
+
 @tailwind utilities;

@@ -33,12 +33,14 @@ export default {
                 postcode: "",
                 lat: "",
                 lng: "",
+                country: "",
                 status: null
             },
             area2: {
                 postcode: "",
                 lat: "",
                 lng: "",
+                country: "",
                 status: null
             }
         }
@@ -63,6 +65,7 @@ export default {
                         postcode: response.data.result.postcode,
                         lat: response.data.result.latitude,
                         lng: response.data.result.longitude,
+                        country: response.data.result.country,
                         status: "fetched"
                     }
             });
