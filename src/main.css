@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+
+.postcode-input {
+    @apply border-4 border-transparent w-full text-5xl text-center;
+}
+
+.postcode-input:focus {
+    @apply border-yellow-400;
+}
+
+.postcode-input.status-fetched {
+    @apply border-green-600;
+}
+
+.postcode-input.status-error {
+    @apply border-red-600;
+}
+
+.search-button {
+    @apply text-3xl bg-white p-4 rounded font-bold;
+    transition: background 0.1s ease-in-out;
+}
+
+.search-button:hover {
+    @apply bg-gray-200;
+}
+
+
+.search-button .normal-text i {
+    @apply mr-5;
+}
+
+.search-button.disabled {
+    @apply bg-gray-500 cursor-not-allowed;
+}
+
+@tailwind utilities;
