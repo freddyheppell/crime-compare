@@ -46,7 +46,7 @@
     background: white;
     position: absolute;
     height: 200px;
-    z-index:1
+    z-index: 1;
 }
 
 /* A black layer on top of the white bottom layer */
@@ -55,17 +55,18 @@
     width:100px;
     height: 200px;
     position: absolute;
-    z-index:2
+    z-index: 2;
 }
 
 /* Some white text on top with blend-mode set to 'difference' */
 .crime-name {
-    position:absolute; 
+    position:absolute;
     font-family: Arial, Helvetica; 
     font-size: 100px; 
     mix-blend-mode: difference;
     color: white;
-    z-index: 3
+    z-index: 3;
+    line-height: 200px;
 }
 
 /* A red DIV over the scene with the blend-mode set to 'screen' */
@@ -74,7 +75,7 @@
     mix-blend-mode: screen;
     height: 200px;
     position: absolute;
-    z-index:4
+    z-index: 4;
 }
 
 @tailwind utilities;
