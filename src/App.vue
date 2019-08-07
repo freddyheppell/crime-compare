@@ -5,7 +5,7 @@
         <h1 class="text-6xl text-white font-bold text-center">CrimeCompare</h1>
         <GetPostcodes :externalLoading="loading" v-on:postcodes-set="setPostcodes"/>
       </div>
-      <div v-else class="text-white">
+      <div v-else class="text-white statistics-container">
         <PostcodeBar :area1="areas.area1" :area2="areas.area2"/>
         <Statistic v-for="(name, key) in crimeTypes" v-bind:key="key" :name="name" :area1="areas.area1.crime_stats[key]" :area2="areas.area2.crime_stats[key]"/>
       </div>
@@ -144,3 +144,9 @@ export default {
   }
 }
 </script>
+
+<style>
+  .statistics-container {
+    margin-top: 2rem;
+  }
+</style>

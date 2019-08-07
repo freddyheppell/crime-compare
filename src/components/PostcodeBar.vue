@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-gray-300 text-xl text-black top-0 fixed w-full z-50">
+    <div class="postcode-bar bg-gray-300 text-xl text-black top-0 fixed w-full z-50">
         <div v-if="warnAboutScotland" class="bg-red-600 text-center text-white font-bold">
             <i class="fas fa-exclamation-triangle"></i> Data from Scotland only includes British Transport Police data
         </div>
@@ -21,3 +21,10 @@ export default {
     }
 }
 </script>
+
+<style>
+.postcode-bar {
+    height: 2rem;
+}
+</style>
+
