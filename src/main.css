@@ -67,6 +67,7 @@
     color: white;
     z-index: 3;
     line-height: 200px;
+    letter-spacing: -.03em;
 }
 
 /* A red DIV over the scene with the blend-mode set to 'screen' */
