@@ -3,6 +3,7 @@
 
 .postcode-input {
     @apply border-4 border-transparent w-full text-5xl text-center;
+    transition: border 0.15s ease-in-out;
 }
 
 .postcode-input:focus {
