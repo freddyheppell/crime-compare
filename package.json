@@ -7,6 +7,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@fullhuman/postcss-purgecss": "^1.2.0",
     "axios": "^0.19.0",
     "axios-rate-limit": "^1.1.0",
     "core-js": "^2.6.5",
