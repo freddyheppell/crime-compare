@@ -1,5 +1,7 @@
 # crime-comparison
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e165451a-24e2-4754-90fe-59228d77f767/deploy-status)](https://app.netlify.com/sites/crime-compare/deploys)
+
 ## Project setup
 ```
 npm install
