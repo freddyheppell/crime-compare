@@ -12,6 +12,9 @@
           </div>
           <p>Currently CrimeCompare doesn't take population into account. Areas with higher population will probably show as having higher rates of crime, even if the crimes per person is lower.</p>
         </div>
+        <div class="text-center mt-3 text-white">
+          <a href="https://github.com/freddyheppell/crime-compare"><i class="fab fa-github"></i></a>
+        </div>
       </div>
     
       <div v-else class="text-white statistics-container">
