@@ -3,11 +3,20 @@
     <div class="w-screen">
       <div v-if="!displayStats" class="w-1/2 mx-auto">
         <h1 class="text-6xl text-white font-bold text-center">CrimeCompare</h1>
+        <p class="text-white text-xl text-center font-bold my-10">Compare the number of crimes committed in the last sixth months between two postcodes in England, Wales and Northern Ireland.</p>
         <GetPostcodes :externalLoading="loading" v-on:postcodes-set="setPostcodes"/>
+
+        <div class="text-center rounded bg-yellow-400 text-black text-sm font-bold px-4 py-3 mt-10" role="alert">
+          <div class="text-center text-xl">
+            <i class="fas fa-exclamation-triangle"></i> 
+          </div>
+          <p>Currently CrimeCompare doesn't take population into account. Areas with higher population will probably show as having higher rates of crime, even if the crimes per person is lower.</p>
+        </div>
       </div>
+    
       <div v-else class="text-white statistics-container">
         <PostcodeBar :area1="areas.area1" :area2="areas.area2" v-on:clear-postcodes="clearPostcodes"/>
-        <Statistic v-for="(name, key) in crimeTypes" v-bind:key="key" :crime_key="key" :name="name" :area1="areas.area1.crime_stats[key]" :area2="areas.area2.crime_stats[key]"/>
+        <Statistic v-for="(name, key, index) in crimeTypes" v-bind:key="key" :crime_key="key" :name="name" :area1="areas.area1.crime_stats[key]" :area2="areas.area2.crime_stats[key]" :delay_multiplier="index"/>
       </div>
     </div>
   </div>
@@ -28,6 +37,7 @@ export default {
 
   data: function() {
     return {
+      http: null,
       datesToCheck: [],
       displayStats: false,
       loading: false,
@@ -41,6 +51,7 @@ export default {
   mounted: function() {
     this.fetchLastUpdate();
     this.fetchCrimeTypes();
+    this.http = rateLimit(axios.create(), { maxRequests: 1, perMilliseconds: 300 });
   },
 
   methods: {
@@ -51,6 +62,7 @@ export default {
 
     setPostcodes: function(data) {
       this.areas = data;
+      console.log("set postcodes running");
       this.fetchCrimeData();
     },
 
@@ -95,6 +107,16 @@ export default {
       return Math.floor(Math.random() * (6000 - 1000 + 1) + 1000);
     },
 
+    fetchCrimeForDate: function(lat, lng, date) {
+      return this.http.get("https://data.police.uk/api/crimes-street/all-crime", {
+        params: {
+            lat: lat,
+            lng: lng,
+            date: date,
+        }
+      })
+    },
+
     fetchCrimeData: function() {
       this.loading = true;
       var requests = [];
@@ -102,33 +124,24 @@ export default {
       this.areas.area1.crimes = [];
       this.areas.area2.crimes = [];
 
-      const http = rateLimit(axios.create(), { maxRequests: 1, perMilliseconds: 300 });
+      console.log(this.datesToCheck.length);
 
       for (let j = 0; j < this.datesToCheck.length; j++) {
         const date = this.datesToCheck[j];
 
-        
+        console.log(date);
+
+        console.log("pushing area 1 fetch for " + date);
         requests.push(
-          http.get("https://data.police.uk/api/crimes-street/all-crime", {
-            params: {
-                lat: this.areas.area1.lat,
-                lng: this.areas.area1.lng,
-                date: date,
-            }
-          }).then(response => {
+          this.fetchCrimeForDate(this.areas.area1.lat, this.areas.area1.lng, date).then(response => {
             console.log(response.data);
             this.areas.area1.crimes = this.areas.area1.crimes.concat(response.data);
           })
         );
-      
+    
+        console.log("pushing area 2 fetch for " + date);
         requests.push(
-          http.get("https://data.police.uk/api/crimes-street/all-crime", {
-            params: {
-              lat: this.areas.area2.lat,
-              lng: this.areas.area2.lng,
-              date: date,
-            }
-          }).then(response => {
+          this.fetchCrimeForDate(this.areas.area2.lat, this.areas.area2.lng, date).then(response => {
             this.areas.area2.crimes = this.areas.area2.crimes.concat(response.data);
           })
         );

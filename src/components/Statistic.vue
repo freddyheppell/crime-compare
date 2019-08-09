@@ -1,8 +1,8 @@
 <template>
     <div v-if="show" style="height: 200px;">
         <div class="whitebg w-full"></div>
-        <div class="blackbg" :style="'width:' + area1Percent + '%'"></div>
-        <div class="makered w-full" ></div>
+        <div class="blackbg" :style="'width:' + width + '%'"></div>
+        <div class="bluebg w-full" ></div>
 
         <span class="crime-name pl-1 font-bold"><i class="fa-fw" :class="icon"></i> {{ name }}</span>
     </div>
@@ -10,8 +10,9 @@
 
 
 <script>
+import { setTimeout } from 'timers';
 export default {
-    props: ["name", "area1", "area2", "crime_key"],
+    props: ["name", "area1", "area2", "crime_key", "delay_multiplier"],
 
     data: function() {
         return {
@@ -31,8 +32,16 @@ export default {
                 "public-order": "fas fa-gavel",
                 "robbery": "fas fa-knife-kitchen",
                 "all-crime": "fas fa-bars fa-rotate-90"
-            }
+            },
+            width: 0
         }
+    },
+
+
+    mounted() {
+        setTimeout(() => {
+            this.width = this.area1Percent;
+        }, this.delay_multiplier * 250)
     },
 
     computed: {

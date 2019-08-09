@@ -57,6 +57,7 @@
     height: 200px;
     position: absolute;
     z-index: 2;
+    transition: width 2s ease-in-out;
 }
 
 /* Some white text on top with blend-mode set to 'difference' */
@@ -72,7 +73,7 @@
 }
 
 /* A red DIV over the scene with the blend-mode set to 'screen' */
-.makered { 
+.bluebg { 
     background-color: #1b4080;
     mix-blend-mode: screen;
     height: 200px;
