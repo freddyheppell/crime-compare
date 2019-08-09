@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="h-full bg-police-blue font-sans">
-    <div class="w-screen">
+    <div class="w-full">
       <div v-if="!displayStats" class="w-1/2 mx-auto">
         <h1 class="text-6xl text-white font-bold text-center">CrimeCompare</h1>
         <p class="text-white text-xl text-center font-bold my-10">Compare the number of crimes committed in the last sixth months between two postcodes in England, Wales and Northern Ireland.</p>
