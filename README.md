@@ -2,7 +2,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e165451a-24e2-4754-90fe-59228d77f767/deploy-status)](https://app.netlify.com/sites/crime-compare/deploys)
 
-Built with (Vue.js)[https://vuejs.org/] (using (axios)[https://github.com/axios/axios] and (Moment.js)[https://momentjs.com/]), (Tailwind CSS)[https://tailwindcss.com/], FontAwesome and served by Netlify.
+Built with [Vue.js](https://vuejs.org/) (using [axios](https://github.com/axios/axios) and [Moment.js](https://momentjs.com/)), [Tailwind CSS](https://tailwindcss.com/), [FontAwesome](https://fontawesome.com/) and served by [Netlify](https://www.netlify.com/).
 
 ## Project setup
 ```
